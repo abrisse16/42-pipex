@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:16:44 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/30 19:23:00 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/30 19:26:59 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ static void	exec_cmd(char *cmd, char **env)
 		my_paths[i] = ft_strjoin(my_paths[i], cmd_args[0]);
 		execve(my_paths[i], cmd_args, env);
 	}
-	ft_free_split(my_paths);
-	ft_free_split(cmd_args);
+	free_split(my_paths);
+	free_split(cmd_args);
 	// free join
 	ft_putendl_fd("Error: Command not found", STDERR);
 	exit(EXIT_FAILURE);
