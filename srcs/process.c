@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:16:44 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/30 19:19:37 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/30 19:23:00 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	exec_cmd(char *cmd, char **env)
 	char	*all_paths;
 	char	**my_paths;
 	char	**cmd_args;
-	int	i;
-	
+	int		i;
+
 	i = 0;
 	while (env[i] && ft_strncmp(env[i], "PATH=", 5) != 0)
 		i++;
