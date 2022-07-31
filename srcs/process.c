@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:16:44 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/31 01:10:22 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/31 11:57:10 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ static char	**free_split(char **str)
 	return (NULL);
 }
 
+static char	*ft_strjoin_free(char const *s1, char const *s2)
+{
+	char	*ret;
+
+	ret = ft_strjoin(s1, s2);
+	free((void *)s1);
+	return (ret);
+}
+
 static void	exec_cmd(char *cmd, char **env)
 {
 	char	*all_paths;
@@ -34,7 +43,7 @@ static void	exec_cmd(char *cmd, char **env)
 	if (ft_strchr(cmd_args[0], '/') > 0)
 		execve(cmd_args[0], cmd_args, env);
 	else
-	{	
+	{
 		i = 0;
 		while (env[i] && ft_strncmp(env[i], "PATH=", 5) != 0)
 			i++;
@@ -45,8 +54,8 @@ static void	exec_cmd(char *cmd, char **env)
 		i = -1;
 		while (my_paths[++i])
 		{
-			my_paths[i] = ft_strjoin(my_paths[i], "/");
-			my_paths[i] = ft_strjoin(my_paths[i], cmd_args[0]);
+			my_paths[i] = ft_strjoin_free(my_paths[i], "/");
+			my_paths[i] = ft_strjoin_free(my_paths[i], cmd_args[0]);
 			execve(my_paths[i], cmd_args, env);
 		}
 		free_split(my_paths);
