@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:52:19 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/31 12:02:47 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/31 15:15:25 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	pipex(int fd1, int fd2, char **av, char **env)
 	close(end[1]);
 	close(end[0]);
 	waitpid(pid1, &status, 0);
+	waitpid(pid2, &status, 0);
 }
 
 int	main(int ac, char **av, char **env)

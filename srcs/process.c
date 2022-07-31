@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:16:44 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/31 12:29:06 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/31 17:30:18 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,9 @@ static void	exec_cmd(char *cmd, char **env)
 
 	cmd_args = ft_split(cmd, ' ');
 	if (ft_strchr(cmd_args[0], '/') != NULL)
+	{
 		execve(cmd_args[0], cmd_args, env);
+	}
 	else
 	{
 		i = 0;
@@ -73,22 +75,20 @@ void	child_process(int fd1, int *end, char *cmd, char **env)
 	dup2(end[1], STDOUT_FILENO);
 	close(end[1]);
 	close(fd1);
-	exec_cmd(cmd, env);
-	ft_putendl_fd("Child1", STDERR);
+	if (fd1 >= 0)
+		exec_cmd(cmd, env);
 	exit(EXIT_FAILURE);
 }
 
 void	parent_process(int fd2, int *end, char *cmd, char **env)
 {
-//	int	status;
-
-//	waitpid(-1, &status, 0);
 	close(end[1]);
-	dup2(fd2, STDOUT_FILENO);
+	if (fd2 >= 0)
+		dup2(fd2, STDOUT_FILENO);
 	dup2(end[0], STDIN_FILENO);
 	close(end[0]);
 	close(fd2);
-	exec_cmd(cmd, env);
-	ft_putendl_fd("Child2", STDERR);
+	if (fd2 >= 0)
+		exec_cmd(cmd, env);
 	exit(EXIT_FAILURE);
 }
