@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:16:44 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/31 11:57:10 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/31 12:29:06 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	exec_cmd(char *cmd, char **env)
 	int		i;
 
 	cmd_args = ft_split(cmd, ' ');
-	if (ft_strchr(cmd_args[0], '/') > 0)
+	if (ft_strchr(cmd_args[0], '/') != NULL)
 		execve(cmd_args[0], cmd_args, env);
 	else
 	{
