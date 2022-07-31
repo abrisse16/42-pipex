@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:16:44 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/30 20:47:08 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/31 01:10:22 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,28 @@ static void	exec_cmd(char *cmd, char **env)
 	char	**cmd_args;
 	int		i;
 
-	i = 0;
-	while (env[i] && ft_strncmp(env[i], "PATH=", 5) != 0)
-		i++;
-	if (!env[i])
-		ft_error("Error: PATH not find");
-	all_paths = env[i] + 5;
-	my_paths = ft_split(all_paths, ':');
 	cmd_args = ft_split(cmd, ' ');
-	i = -1;
-	while (my_paths[++i])
-	{
-		my_paths[i] = ft_strjoin(my_paths[i], "/");
-		my_paths[i] = ft_strjoin(my_paths[i], cmd_args[0]);
-		execve(my_paths[i], cmd_args, env);
+	if (ft_strchr(cmd_args[0], '/') > 0)
+		execve(cmd_args[0], cmd_args, env);
+	else
+	{	
+		i = 0;
+		while (env[i] && ft_strncmp(env[i], "PATH=", 5) != 0)
+			i++;
+		if (!env[i])
+			ft_error("Error: PATH not find");
+		all_paths = env[i] + 5;
+		my_paths = ft_split(all_paths, ':');
+		i = -1;
+		while (my_paths[++i])
+		{
+			my_paths[i] = ft_strjoin(my_paths[i], "/");
+			my_paths[i] = ft_strjoin(my_paths[i], cmd_args[0]);
+			execve(my_paths[i], cmd_args, env);
+		}
+		free_split(my_paths);
 	}
-	free_split(my_paths);
 	free_split(cmd_args);
-	// free join
 	ft_putendl_fd("Error: Command not found", STDERR);
 	exit(EXIT_FAILURE);
 }
@@ -55,24 +59,27 @@ static void	exec_cmd(char *cmd, char **env)
 void	child_process(int fd1, int *end, char *cmd, char **env)
 {
 	close(end[0]);
-	dup2(fd1, STDIN_FILENO);
+	if (fd1 >= 0)
+		dup2(fd1, STDIN_FILENO);
 	dup2(end[1], STDOUT_FILENO);
 	close(end[1]);
 	close(fd1);
 	exec_cmd(cmd, env);
+	ft_putendl_fd("Child1", STDERR);
 	exit(EXIT_FAILURE);
 }
 
 void	parent_process(int fd2, int *end, char *cmd, char **env)
 {
-	int	status;
+//	int	status;
 
-	waitpid(-1, &status, 0);
+//	waitpid(-1, &status, 0);
 	close(end[1]);
 	dup2(fd2, STDOUT_FILENO);
 	dup2(end[0], STDIN_FILENO);
 	close(end[0]);
 	close(fd2);
 	exec_cmd(cmd, env);
+	ft_putendl_fd("Child2", STDERR);
 	exit(EXIT_FAILURE);
 }
