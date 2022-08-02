@@ -34,6 +34,7 @@ SRCS		= ASCII_functions/ft_isalpha.c				\
 			  allocation_functions/ft_calloc.c			\
 			  string_functions/ft_substr.c				\
 			  string_functions/ft_strjoin.c				\
+			  string_functions/ft_strjoin_free.c		\
 			  string_functions/ft_strtrim.c				\
 			  string_functions/ft_strmapi.c				\
 			  string_functions/ft_striteri.c			\

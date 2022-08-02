@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 18:16:44 by abrisse           #+#    #+#             */
-/*   Updated: 2022/08/02 17:45:07 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/08/02 17:34:33 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ static char	**free_split(char **str)
 	return (NULL);
 }
 
+static char	*ft_strjoin_free(char const *s1, char const *s2)
+{
+	char	*ret;
+
+	ret = ft_strjoin(s1, s2);
+	free((void *)s1);
+	return (ret);
+}
+
 static char	**get_paths(char **env)
 {
 	int		i;
@@ -34,6 +43,10 @@ static char	**get_paths(char **env)
 	if (!env[i])
 		ft_error("Error: PATH not find");
 	my_paths = ft_split(env[i] + 5, ':');
+ft_putendl_fd("HERE", STDERR);
+	i = -1;
+	while (my_paths[++i])
+		ft_putendl_fd(my_paths[i], STDERR);
 	return (my_paths);
 }
 

@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 21:52:19 by abrisse           #+#    #+#             */
-/*   Updated: 2022/07/31 15:15:25 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/08/02 17:39:54 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	pipex(int fd1, int fd2, char **av, char **env)
 int	main(int ac, char **av, char **env)
 {
 	int	fd1;
-	int fd2;
+	int	fd2;
 
 	if (ac != 5)
 	{
