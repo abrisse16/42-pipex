@@ -32,7 +32,7 @@ LIBFT = libft/libft.a
 # COMPILATION
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
-	@echo "$(_GREEN)[Pipex: Executable created]$(_White)"
+	@echo "$(_GREEN)[Pipex: Executable created]$(_WHITE)"
 
 $(LIBFT):
 	@make -C libft/
