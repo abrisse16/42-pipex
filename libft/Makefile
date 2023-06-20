@@ -1,12 +1,13 @@
 # COLORS
-_GREY=	$'\033[1;30m
-_RED=	$'\033[1;31m
-_GREEN=	$'\033[1;32m
-_YELLOW=$'\033[1;33m
-_BLUE=	$'\033[1;34m
-_PURPLE=$'\033[1;35m
-_CYAN=	$'\033[1;36m
-_WHITE=	$'\033[1;37m
+_GREY		=	$'\033[1;30m
+_RED		=	$'\033[1;31m
+_GREEN		=	$'\033[1;32m
+_YELLOW		=	$'\033[1;33m
+_BLUE		=	$'\033[1;34m
+_PURPLE		=	$'\033[1;35m
+_CYAN		=	$'\033[1;36m
+_WHITE		=	$'\033[1;37m
+_NO_COLOR	= 	$'\033[m
 
 # VARIABLES
 NAME	= libft.a
@@ -85,10 +86,10 @@ INCLUDE	= -I./includes/
 
 # COMPILATION
 $(NAME)	: message $(OBJS)
-	@echo "$(_GREEN)[Libft: Compilation finished]$(_WHITE)"
+	@echo "$(_GREEN)[Libft: Compilation finished]$(_NO_COLOR)"
 	@ar cr $(NAME) $(OBJS)
 	@ranlib $(NAME)
-	@echo "$(_PURPLE)[Libft: $(NAME) created]$(_WHITE)"
+	@echo "$(_PURPLE)[Libft: $(NAME) created]$(_NO_COLOR)"
 
 $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_PATH)
@@ -100,22 +101,22 @@ $(OBJS_PATH)%.o : $(SRCS_PATH)%.c
 	@mkdir -p $(OBJS_PATH)string_functions
 	@mkdir -p $(OBJS_PATH)get_next_line
 	@mkdir -p $(OBJS_PATH)ft_printf
-#	@echo "$(_GREY)Compiling : $<$(_WHITE)"
+#	@echo "$(_GREY)Compiling : $<$(_NO_COLOR)"
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 # RULES
 all		: $(NAME)
 
 message	:
-	@echo "$(_YELLOW)[Libft: Compilation ongoing ...]$(_WHITE)"
+	@echo "$(_YELLOW)[Libft: Compilation ongoing ...]$(_NO_COLOR)"
 
 clean	:
 	@rm -rf $(OBJS_PATH)
-	@echo "$(_RED)[Libft: All objects removed]$(_WHITE)"
+	@echo "$(_RED)[Libft: All objects removed]$(_NO_COLOR)"
 
 fclean	: clean
 	@rm -f $(NAME)
-	@echo "$(_RED)[Libft: $(NAME) removed]$(_WHITE)"
+	@echo "$(_RED)[Libft: $(NAME) removed]$(_NO_COLOR)"
 
 re		: fclean all
 

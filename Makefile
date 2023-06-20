@@ -1,12 +1,13 @@
 # COLORS
-_GREY=	$'\033[1;30m
-_RED=	$'\033[1;31m
-_GREEN=	$'\033[1;32m
-_YELLOW=$'\033[1;33m
-_BLUE=	$'\033[1;34m
-_PURPLE=$'\033[1;35m
-_CYAN=	$'\033[1;36m
-_WHITE=	$'\033[1;37m
+_GREY		=	$'\033[1;30m
+_RED		=	$'\033[1;31m
+_GREEN		=	$'\033[1;32m
+_YELLOW		=	$'\033[1;33m
+_BLUE		=	$'\033[1;34m
+_PURPLE		=	$'\033[1;35m
+_CYAN		=	$'\033[1;36m
+_WHITE		=	$'\033[1;37m
+_NO_COLOR	= 	$'\033[m
 
 # VARIABLE
 NAME	= pipex
@@ -32,14 +33,14 @@ LIBFT = libft/libft.a
 # COMPILATION
 $(NAME): $(LIBFT) $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
-	@echo "$(_GREEN)[Pipex: Executable created]$(_White)"
+	@echo "$(_GREEN)[Pipex: Executable created]$(_NO_COLOR)"
 
 $(LIBFT):
 	@make -C libft/
 
 $(OBJS_PATH)%.o : %.c
 	@mkdir -p $(OBJS_PATH)
-	@echo "$(_GREY)Compiling : $<$(_WHITE)"
+	@echo "$(_GREY)Compiling : $<$(_NO_COLOR)"
 	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 # RULES
@@ -48,12 +49,12 @@ all		: $(NAME)
 clean	:
 	@make -C libft/ clean
 	@rm -rf $(OBJS) $(OBJS_PATH)
-	@echo "$(_RED)[Pipex: All objects removed]$(_WHITE)"
+	@echo "$(_RED)[Pipex: All objects removed]$(_NO_COLOR)"
 
 fclean	: clean
 	@make -C libft/ fclean
 	@rm -rf $(NAME)
-	@echo "$(_RED)[Pipex: Executable removed]$(_WHITE)"
+	@echo "$(_RED)[Pipex: Executable removed]$(_NO_COLOR)"
 
 re		: fclean all
 

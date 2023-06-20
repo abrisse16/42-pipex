@@ -6,7 +6,7 @@
 /*   By: abrisse <abrisse@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/28 19:32:51 by abrisse           #+#    #+#             */
-/*   Updated: 2022/08/29 12:39:05 by abrisse          ###   ########.fr       */
+/*   Updated: 2022/07/30 18:48:56 by abrisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <errno.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <errno.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
