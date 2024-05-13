@@ -10,12 +10,12 @@ It is an introductory project for the bigger UNIX projects that will appear late
 ##
 
 ### Final grade
-[![abrisse's 42 pipex Score](https://badge42.vercel.app/api/v2/cl1rqvecz002109l7rv0oprry/project/2620562)](https://github.com/JaeSeoKim/badge42)
+[![abrisse's 42 pipex Score](https://badge.nimon.fr/api/v2/clw51aj8x026501rzp5ef4x2f/project/2620562)](https://github.com/Nimon77/badge42)
 
 ### Subject
-English version [here](https://cdn.intra.42.fr/pdf/pdf/90135/en.subject.pdf)
+English version [here](https://github.com/abrisse16/42-subjects/blob/7385a594afd19b06ab40ed62b5e8c818d2d8bd21/pipex-subject-v2.en.pdf)
 <br>
-French version [here](https://cdn.intra.42.fr/pdf/pdf/90136/fr.subject.pdf)
+French version [here](https://github.com/abrisse16/42-subjects/blob/7385a594afd19b06ab40ed62b5e8c818d2d8bd21/pipex-subject-v2.fr.pdf)
 
 </div>
 
